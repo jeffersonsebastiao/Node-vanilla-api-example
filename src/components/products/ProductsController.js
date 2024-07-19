@@ -95,12 +95,23 @@ export class ProductsController {
     }
   }
 
+  /**
+   * @desc Delete a available product
+   * @route DELETE /products/:id
+   */
   async deleteProduct(req, res, id) {
     try {
       const newListProducts = await this.repository.delete(id);
 
-      res.writeHead(200, { "Content-Type": "application/json" });
-      return res.end(JSON.stringify(newListProducts));
+      const product = await this.repository.findOne(id);
+
+      if (!product) {
+        res.writeHead(404, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify({ message: "Product not found" }));
+      } else {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        return res.end(JSON.stringify(newListProducts));
+      }
     } catch (error) {
       res.writeHead(404, { "Content-Type": "application/json" });
       return res.end();
