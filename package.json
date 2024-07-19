@@ -1,0 +1,13 @@
+{
+  "name": "node-vanilla-api-example",
+  "version": "1.0.0",
+  "description": "Node api example without any frameworks",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "author": "Jefferson Sebastião",
+  "license": "MIT"
+}
